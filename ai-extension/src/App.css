@@ -1,0 +1,142 @@
+:root {
+  --accent: #4f8cff;
+  --bg: #fff;
+  --panel-bg: #f7f9fc;
+  --text: #222;
+  --border-radius: 14px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.main-layout {
+  display: flex;
+  gap: 1rem;
+}
+@media (max-width: 600px) {
+  .main-layout {
+    flex-direction: column;
+  }
+}
+
+.panel {
+  background: var(--panel-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.transcription-panel {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.transcription-content {
+  flex: 1;
+}
+
+.transcription-text {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.suggestions-panel {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.suggestion {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background: #eaf1fb;
+  transition: background 0.2s;
+}
+.suggestion:active {
+  background: var(--accent);
+  color: #fff;
+}
+.placeholder {
+  color: #bbb;
+  font-style: italic;
+}
+
+
+.mic-btn {
+  margin: 1.5rem auto 0 auto;
+  display: block;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  background: #e0e0e0;
+  color: #222;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+.mic-btn:active {
+  background: #d0d0d0;
+  border-color: #bbb;
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #eee;
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
