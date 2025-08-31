@@ -28,7 +28,14 @@ Partner Chat Assistant is a Chrome extension that transcribes spoken audio and s
 
 ## Demo
 
-[![Video Demo](https://img.youtube.com/vi/your-demo-video-id/0.jpg)](https://www.youtube.com/watch?v=your-demo-video-id)
+<div>
+    <a href="https://www.loom.com/share/be426789c8b64a45922c342ddd967272">
+      <p>Demo Video</p>
+    </a>
+    <a href="https://www.loom.com/share/be426789c8b64a45922c342ddd967272">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/be426789c8b64a45922c342ddd967272-b46cb0be28dabb64-full-play.gif">
+    </a>
+</div>
 
 _Replace the link above with your actual demo video._
 
