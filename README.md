@@ -37,7 +37,7 @@ Partner Chat Assistant is a Chrome extension that transcribes spoken audio and s
     </a>
 </div>
 
-_Replace the link above with your actual demo video._
+The demo was made on mock responses since I didn't have money for ChatGpt Plus while doing demo
 
 ---
 
