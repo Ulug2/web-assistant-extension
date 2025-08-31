@@ -51,6 +51,19 @@ body {
   padding: 1rem;
   flex: 1;
   min-width: 0;
+  .panels-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @media (max-width: 700px) {
+    .panels-row {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: stretch;
+    }
+  }
   display: flex;
   flex-direction: column;
 }
@@ -67,6 +80,16 @@ body {
 
 .transcription-content {
   flex: 1;
+}
+
+.mic-btn.listening {
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--accent); }
+  70% { box-shadow: 0 0 0 12px rgba(79,140,255,0.12); }
+  100% { box-shadow: 0 0 0 0 var(--accent); }
 }
 
 .transcription-text {
@@ -91,6 +114,13 @@ body {
   margin-bottom: 0.5rem;
   background: #eaf1fb;
   transition: background 0.2s;
+  /* Copied tag style */
+  .copied {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
 }
 .suggestion:active {
   background: var(--accent);

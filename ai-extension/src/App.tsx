@@ -1,10 +1,14 @@
+
 import './App.css';
 import { useState, useRef } from 'react';
 
+
 function App() {
   const [listening, setListening] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [transcription, setTranscription] = useState('');
   const [suggestion, setSuggestion] = useState('');
+  const [copied, setCopied] = useState(false);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
 
@@ -22,6 +26,7 @@ function App() {
 
 
     mediaRecorder.onstop = async () => {
+      setLoading(true);
       const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
 
       // Play back the recorded audio for debugging
@@ -50,6 +55,7 @@ function App() {
       } catch (error) {
         setTranscription('Error transcribing audio.');
       }
+      setLoading(false);
     };
 
     mediaRecorder.start();
@@ -65,6 +71,14 @@ function App() {
     listening ? stopListening() : startListening();
   };
 
+  const handleSuggestionClick = () => {
+    if (suggestion) {
+      navigator.clipboard.writeText(suggestion);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1200);
+    }
+  };
+
   return (
     <div className="app-container">
       <div className="header">
@@ -74,16 +88,25 @@ function App() {
       <div className="panels-row">
         <div className="panel">
           <div className="panel-title">Partner said:</div>
-          <div className="transcription-text">{transcription || <span className="placeholder">Transcription will appear here</span>}</div>
+          <div className="transcription-text">
+            {loading ? <span className="loading-tag">Loading...</span> : (transcription || <span className="placeholder">Transcription will appear here</span>)}
+          </div>
         </div>
         <div className="panel">
           <div className="panel-title">Suggested responses:</div>
-          <div className="suggestion">{suggestion || <span className="placeholder">Suggestions will appear here</span>}</div>
+          <div className="suggestion" onClick={handleSuggestionClick} style={{cursor: suggestion ? 'pointer' : 'default'}}>
+            {loading ? <span className="loading-tag">Loading...</span> : (suggestion ? (copied ? <span className="copied">Copied!</span> : suggestion) : <span className="placeholder">Suggestions will appear here</span>)}
+          </div>
         </div>
       </div>
-      <button className="mic-btn" onClick={handleMicClick}>
+      <button className={`mic-btn${listening ? ' listening' : ''}`} onClick={handleMicClick}>
         <span role="img" aria-label="Mic">🎙️</span>
       </button>
+      {loading && (
+        <div className="loading-overlay">
+          <span className="spinner" />
+        </div>
+      )}
     </div>
   );
 }
